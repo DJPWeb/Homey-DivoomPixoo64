@@ -1,0 +1,35 @@
+{
+  "0.1.0": {
+    "en": "First release of this complete rewrite of the Divoom Pixoo 64 driver with expanded canva creation abilities."
+  },
+  "0.1.1": {
+    "en": "Fixed Metadata"
+  },
+  "0.1.5": {
+    "en": "Added brightness control and made Clear Screen respect Hold Display."
+  },
+  "0.1.6": {
+    "en": "Added support for newer Pixoo64 devices using the local API on port 9000."
+  },
+  "0.1.7": {
+    "en": "Improved Pixoo64 pairing and discovery reliability for newer API revisions."
+  },
+  "0.1.8": {
+    "en": "Added a Flow condition to check the currently selected Pixoo64 channel."
+  },
+  "0.1.9": {
+    "en": "Raised the animated GIF frame cap to 60 frames to match the Pixoo64 firmware limit."
+  },
+  "0.1.11": {
+    "en": "Added a Flow card to choose the animated sprite composition mode."
+  },
+  "0.1.12": {
+    "en": "Added device controls to view and switch the current Pixoo64 channel."
+  },
+  "0.2.0": {
+    "en": "Added a Flow condition for the current Pixoo64 channel, raised animated GIF output to the 60-frame firmware limit, added a Flow card to choose the animated sprite composition mode, and added icon-based device controls to view and switch channels."
+  },
+  "0.2.1": {
+    "en": "Added automatic IP recovery when a paired Pixoo64 changes its local address. New devices are named without their IP address."
+  }
+}

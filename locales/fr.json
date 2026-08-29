@@ -1,0 +1,52 @@
+{
+  "pairing": {
+    "invalid_ip": "Format d'adresse IP invalide. Utilisez par exemple 192.168.1.42",
+    "unreachable": "Impossible de contacter le Pixoo64 à {{ip}}. Vérifiez l'adresse IP et que l'appareil est allumé.",
+    "not_validated": "Aucun appareil validé. Revenez en arrière et saisissez une adresse IP."
+  },
+  "device": {
+    "unreachable": "Appareil hors ligne ou inaccessible",
+    "command_failed": "Commande échouée — vérifiez que l'appareil est allumé et accessible"
+  },
+  "flow": {
+    "display_image": {
+      "image_fetch_failed": "Impossible de récupérer l'image depuis l'URL — vérifiez qu'elle est accessible et renvoie un PNG, GIF ou JPEG",
+      "image_decode_failed": "Impossible de décoder l'image — seuls les fichiers PNG, GIF et JPEG sont supportés",
+      "send_failed": "Image envoyée mais l'appareil a retourné une erreur"
+    },
+    "display_text": {
+      "send_failed": "Texte envoyé mais l'appareil a retourné une erreur"
+    },
+    "set_channel": {
+      "failed": "Impossible de changer de canal — vérifiez que l'appareil est allumé et accessible"
+    },
+    "play_buzzer": {
+      "failed": "Impossible d'activer le buzzer — vérifiez que l'appareil est allumé et accessible"
+    },
+    "sync_time": {
+      "failed": "Impossible de synchroniser l'horloge — vérifiez que l'appareil est allumé et accessible"
+    },
+    "show_scoreboard": {
+      "failed": "Impossible d'afficher le tableau de score — vérifiez que l'appareil est allumé et accessible"
+    },
+    "start_timer": {
+      "failed": "Impossible de démarrer le minuteur — vérifiez que l'appareil est allumé et accessible"
+    },
+    "stop_timer": {
+      "failed": "Impossible d'arrêter le minuteur — vérifiez que l'appareil est allumé et accessible"
+    },
+    "fill_screen": {
+      "failed": "Impossible de remplir l'écran — vérifiez que l'appareil est allumé et accessible"
+    },
+    "draw_rect": {
+      "failed": "Impossible de dessiner le rectangle — vérifiez que l'appareil est allumé et accessible"
+    },
+    "draw_text_at": {
+      "failed": "Impossible d'écrire le texte — vérifiez que l'appareil est allumé et accessible"
+    },
+    "draw_image_at": {
+      "image_fetch_failed": "Impossible de récupérer l'image depuis l'URL — vérifiez qu'elle est accessible et renvoie un PNG, GIF ou JPEG",
+      "send_failed": "Impossible d'afficher l'image — vérifiez que l'appareil est allumé et accessible"
+    }
+  }
+}

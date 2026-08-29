@@ -1,0 +1,1445 @@
+{
+  "id": "com.divoom.pixoo64",
+  "version": "0.2.1",
+  "compatibility": ">=12.0.0",
+  "sdk": 3,
+  "homeyCommunityTopicId": 151658,
+  "name": {
+    "en": "Divoom Pixoo64"
+  },
+  "description": {
+    "en": "Control your Divoom Pixoo64 pixel display from Homey.",
+    "fr": "Contrôlez votre affichage pixel Divoom Pixoo64 depuis Homey."
+  },
+  "category": "video",
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "brandColor": "#000000",
+  "support": "https://community.homey.app/t/app-pro-divoom-pixoo64/151658",
+  "author": {
+    "name": "Jean-Philippe Durand",
+    "email": "dev.durand.jp@gmail.com"
+  },
+  "capabilities": {
+    "pixoo_channel": {
+      "type": "enum",
+      "title": {
+        "en": "Channel",
+        "fr": "Canal"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "clock",
+          "title": {
+            "en": "Clock",
+            "fr": "Horloge"
+          }
+        },
+        {
+          "id": "cloud",
+          "title": {
+            "en": "Cloud",
+            "fr": "Nuage"
+          }
+        },
+        {
+          "id": "visualizer",
+          "title": {
+            "en": "Visualizer",
+            "fr": "Visualiseur"
+          }
+        },
+        {
+          "id": "custom",
+          "title": {
+            "en": "Custom",
+            "fr": "Personnalisé"
+          }
+        },
+        {
+          "id": "black",
+          "title": {
+            "en": "Black",
+            "fr": "Noir"
+          }
+        }
+      ]
+    },
+    "pixoo_channel_clock": {
+      "type": "boolean",
+      "title": {
+        "en": "Clock",
+        "fr": "Horloge"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/icons/channel-clock.svg"
+    },
+    "pixoo_channel_cloud": {
+      "type": "boolean",
+      "title": {
+        "en": "Cloud",
+        "fr": "Nuage"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/icons/channel-cloud.svg"
+    },
+    "pixoo_channel_visualizer": {
+      "type": "boolean",
+      "title": {
+        "en": "Visualizer",
+        "fr": "Visualiseur"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/icons/channel-visualizer.svg"
+    },
+    "pixoo_channel_custom": {
+      "type": "boolean",
+      "title": {
+        "en": "Custom",
+        "fr": "Personnalisé"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/icons/channel-custom.svg"
+    },
+    "pixoo_channel_black": {
+      "type": "boolean",
+      "title": {
+        "en": "Black",
+        "fr": "Noir"
+      },
+      "getable": false,
+      "setable": true,
+      "uiComponent": "button",
+      "icon": "assets/icons/channel-black.svg"
+    }
+  },
+  "flow": {
+    "conditions": [
+      {
+        "id": "channel_is",
+        "title": {
+          "en": "Channel is",
+          "fr": "Le canal est"
+        },
+        "titleFormatted": {
+          "en": "Channel is [[channel]]",
+          "fr": "Le canal est [[channel]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "dropdown",
+            "name": "channel",
+            "title": {
+              "en": "Channel",
+              "fr": "Canal"
+            },
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Clock",
+                  "fr": "Horloge"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Cloud",
+                  "fr": "Nuage"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Visualizer",
+                  "fr": "Visualiseur"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Custom",
+                  "fr": "Personnalisé"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Black",
+                  "fr": "Noir"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "set_channel",
+        "title": {
+          "en": "Switch channel",
+          "fr": "Changer de canal"
+        },
+        "titleFormatted": {
+          "en": "Switch to [[channel]]",
+          "fr": "Passer au canal [[channel]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "dropdown",
+            "name": "channel",
+            "title": {
+              "en": "Channel",
+              "fr": "Canal"
+            },
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Clock",
+                  "fr": "Horloge"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Cloud",
+                  "fr": "Nuage"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Visualizer",
+                  "fr": "Visualiseur"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Custom",
+                  "fr": "Personnalisé"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Black",
+                  "fr": "Noir"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_animation_mode",
+        "title": {
+          "en": "Set animation mode",
+          "fr": "Définir le mode d'animation"
+        },
+        "titleFormatted": {
+          "en": "Set animation mode to [[mode]]",
+          "fr": "Définir le mode d'animation sur [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Mode",
+              "fr": "Mode"
+            },
+            "values": [
+              {
+                "id": "balanced",
+                "label": {
+                  "en": "Balanced",
+                  "fr": "Équilibré"
+                }
+              },
+              {
+                "id": "fast",
+                "label": {
+                  "en": "Fast",
+                  "fr": "Rapide"
+                }
+              },
+              {
+                "id": "slow",
+                "label": {
+                  "en": "Slow",
+                  "fr": "Lent"
+                }
+              },
+              {
+                "id": "timing",
+                "label": {
+                  "en": "Timing-aware",
+                  "fr": "Respecter les délais"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sync_time",
+        "title": {
+          "en": "Synchronise clock",
+          "fr": "Synchroniser l'horloge"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          }
+        ]
+      },
+      {
+        "id": "play_buzzer",
+        "title": {
+          "en": "Play buzzer",
+          "fr": "Activer le buzzer"
+        },
+        "titleFormatted": {
+          "en": "Buzzer for [[duration]] s",
+          "fr": "Buzzer pendant [[duration]] s"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "number",
+            "name": "duration",
+            "title": {
+              "en": "Duration (seconds)",
+              "fr": "Durée (secondes)"
+            },
+            "min": 1,
+            "max": 30,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "show_scoreboard",
+        "title": {
+          "en": "Show scoreboard",
+          "fr": "Afficher le tableau de score"
+        },
+        "titleFormatted": {
+          "en": "Show scoreboard [[red]] / [[blue]]",
+          "fr": "Tableau de score [[red]] / [[blue]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "number",
+            "name": "red",
+            "title": {
+              "en": "Red score",
+              "fr": "Score rouge"
+            },
+            "min": 0,
+            "max": 999,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "blue",
+            "title": {
+              "en": "Blue score",
+              "fr": "Score bleu"
+            },
+            "min": 0,
+            "max": 999,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "start_timer",
+        "title": {
+          "en": "Start timer",
+          "fr": "Démarrer le minuteur"
+        },
+        "titleFormatted": {
+          "en": "Start timer [[minutes]] min [[seconds]] s",
+          "fr": "Démarrer minuteur [[minutes]] min [[seconds]] s"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "number",
+            "name": "minutes",
+            "title": {
+              "en": "Minutes",
+              "fr": "Minutes"
+            },
+            "min": 0,
+            "max": 99,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "seconds",
+            "title": {
+              "en": "Seconds",
+              "fr": "Secondes"
+            },
+            "min": 0,
+            "max": 59,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "stop_timer",
+        "title": {
+          "en": "Stop timer",
+          "fr": "Arrêter le minuteur"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          }
+        ]
+      },
+      {
+        "id": "hold_display",
+        "title": {
+          "en": "Hold display",
+          "fr": "Suspendre l'affichage"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          }
+        ]
+      },
+      {
+        "id": "release_display",
+        "title": {
+          "en": "Release display",
+          "fr": "Envoyer l'affichage"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          }
+        ]
+      },
+      {
+        "id": "fill_screen",
+        "title": {
+          "en": "Fill screen with color",
+          "fr": "Remplir l'écran d'une couleur"
+        },
+        "titleFormatted": {
+          "en": "Fill screen with [[color]]",
+          "fr": "Remplir l'écran avec [[color]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "color",
+            "name": "color",
+            "title": {
+              "en": "Color",
+              "fr": "Couleur"
+            }
+          }
+        ]
+      },
+      {
+        "id": "draw_rect",
+        "title": {
+          "en": "Draw rectangle",
+          "fr": "Dessiner un rectangle"
+        },
+        "titleFormatted": {
+          "en": "Draw rectangle [[w]]x[[h]] at [[x]],[[y]] in [[color]] [[opacity]]%",
+          "fr": "Rectangle [[w]]x[[h]] à [[x]],[[y]] en [[color]] [[opacity]]%"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X (column)",
+              "fr": "X (colonne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y (row)",
+              "fr": "Y (ligne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "w",
+            "title": {
+              "en": "Width",
+              "fr": "Largeur"
+            },
+            "min": 1,
+            "max": 64,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "h",
+            "title": {
+              "en": "Height",
+              "fr": "Hauteur"
+            },
+            "min": 1,
+            "max": 64,
+            "step": 1
+          },
+          {
+            "type": "color",
+            "name": "color",
+            "title": {
+              "en": "Color",
+              "fr": "Couleur"
+            }
+          },
+          {
+            "type": "number",
+            "name": "opacity",
+            "title": {
+              "en": "Opacity (%)",
+              "fr": "Opacité (%)"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "value": 100
+          }
+        ]
+      },
+      {
+        "id": "display_image",
+        "title": {
+          "en": "Display image",
+          "fr": "Afficher une image"
+        },
+        "titleFormatted": {
+          "en": "Display image [[url]] frame [[frame]]",
+          "fr": "Afficher l'image [[url]] frame [[frame]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "text",
+            "name": "url",
+            "title": {
+              "en": "Image URL",
+              "fr": "URL de l'image"
+            }
+          },
+          {
+            "type": "number",
+            "name": "frame",
+            "title": {
+              "en": "Frame (0 = animate)",
+              "fr": "Frame (0 = animation)"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "display_apple_cover",
+        "title": {
+          "en": "Display Apple Cover",
+          "fr": "Afficher une pochette Apple"
+        },
+        "titleFormatted": {
+          "en": "Display Apple Cover [[url]] at [[x]],[[y]] size [[w]]x[[h]]",
+          "fr": "Afficher pochette Apple [[url]] à [[x]],[[y]] taille [[w]]x[[h]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "text",
+            "name": "url",
+            "title": {
+              "en": "Image URL",
+              "fr": "URL de l'image"
+            }
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X (column)",
+              "fr": "X (colonne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1,
+            "value": 0
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y (row)",
+              "fr": "Y (ligne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1,
+            "value": 0
+          },
+          {
+            "type": "number",
+            "name": "w",
+            "title": {
+              "en": "Width",
+              "fr": "Largeur"
+            },
+            "min": 1,
+            "max": 64,
+            "step": 1,
+            "value": 64
+          },
+          {
+            "type": "number",
+            "name": "h",
+            "title": {
+              "en": "Height",
+              "fr": "Hauteur"
+            },
+            "min": 1,
+            "max": 64,
+            "step": 1,
+            "value": 64
+          }
+        ]
+      },
+      {
+        "id": "draw_image_at",
+        "title": {
+          "en": "Draw image at position",
+          "fr": "Afficher une image à une position"
+        },
+        "titleFormatted": {
+          "en": "Draw image [[url]] at [[x]],[[y]] size [[w]]x[[h]]",
+          "fr": "Image [[url]] à [[x]],[[y]] taille [[w]]x[[h]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "text",
+            "name": "url",
+            "title": {
+              "en": "Image URL",
+              "fr": "URL de l'image"
+            }
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X (column)",
+              "fr": "X (colonne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y (row)",
+              "fr": "Y (ligne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "w",
+            "title": {
+              "en": "Width",
+              "fr": "Largeur"
+            },
+            "min": 1,
+            "max": 64,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "h",
+            "title": {
+              "en": "Height",
+              "fr": "Hauteur"
+            },
+            "min": 1,
+            "max": 64,
+            "step": 1
+          }
+        ]
+      },
+      {
+        "id": "draw_lametric_icon",
+        "title": {
+          "en": "Draw LaMetric icon",
+          "fr": "Afficher une icône LaMetric"
+        },
+        "titleFormatted": {
+          "en": "Draw LaMetric icon #[[id]] at [[x]],[[y]] zoom [[zoom]]x frame [[frame]]",
+          "fr": "Icône LaMetric #[[id]] à [[x]],[[y]] zoom [[zoom]]x frame [[frame]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "number",
+            "name": "id",
+            "title": {
+              "en": "Icon ID",
+              "fr": "ID de l'icône"
+            },
+            "min": 1,
+            "max": 99999,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X (column)",
+              "fr": "X (colonne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y (row)",
+              "fr": "Y (ligne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "zoom",
+            "title": {
+              "en": "Zoom (1× = 8px)",
+              "fr": "Zoom (1× = 8px)"
+            },
+            "min": 1,
+            "max": 8,
+            "step": 1,
+            "value": 1
+          },
+          {
+            "type": "number",
+            "name": "frame",
+            "title": {
+              "en": "Frame (0 = animate)",
+              "fr": "Frame (0 = animation)"
+            },
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "draw_pixel_text",
+        "title": {
+          "en": "Draw pixel text",
+          "fr": "Écrire en police pixel"
+        },
+        "titleFormatted": {
+          "en": "Draw pixel '[[text]]' at [[x]],[[y]] in [[color]] ([[font]])",
+          "fr": "Pixel '[[text]]' à [[x]],[[y]] en [[color]] ([[font]])"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "text",
+            "name": "text",
+            "title": {
+              "en": "Text",
+              "fr": "Texte"
+            }
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X (column)",
+              "fr": "X (colonne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y (row)",
+              "fr": "Y (ligne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "color",
+            "name": "color",
+            "title": {
+              "en": "Color",
+              "fr": "Couleur"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "font",
+            "title": {
+              "en": "Font",
+              "fr": "Police"
+            },
+            "values": [
+              {
+                "id": "tiny",
+                "label": {
+                  "en": "Tiny (3×5)",
+                  "fr": "Tiny (3×5)"
+                }
+              },
+              {
+                "id": "TinyVariable",
+                "label": {
+                  "en": "Tiny Variable (3×5)",
+                  "fr": "Tiny Variable (3×5)"
+                }
+              },
+              {
+                "id": "ArtosSans",
+                "label": {
+                  "en": "Artos Sans",
+                  "fr": "Artos Sans"
+                }
+              },
+              {
+                "id": "ArtosSerif",
+                "label": {
+                  "en": "Artos Serif",
+                  "fr": "Artos Serif"
+                }
+              },
+              {
+                "id": "Chroma48",
+                "label": {
+                  "en": "Chroma 48",
+                  "fr": "Chroma 48"
+                }
+              },
+              {
+                "id": "SaikyoSans",
+                "label": {
+                  "en": "Saïkyo Sans",
+                  "fr": "Saïkyo Sans"
+                }
+              },
+              {
+                "id": "TorusSans",
+                "label": {
+                  "en": "Torus Sans",
+                  "fr": "Torus Sans"
+                }
+              },
+              {
+                "id": "Victoria",
+                "label": {
+                  "en": "Victoria",
+                  "fr": "Victoria"
+                }
+              },
+              {
+                "id": "VictoriaBold",
+                "label": {
+                  "en": "Victoria Bold",
+                  "fr": "Victoria Gras"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "display_text",
+        "title": {
+          "en": "Display text",
+          "fr": "Afficher du texte"
+        },
+        "titleFormatted": {
+          "en": "Display [[text]] in [[color]] (font [[font]])",
+          "fr": "Afficher [[text]] en [[color]] (police [[font]])"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "text",
+            "name": "text",
+            "title": {
+              "en": "Text",
+              "fr": "Texte"
+            }
+          },
+          {
+            "type": "color",
+            "name": "color",
+            "title": {
+              "en": "Color",
+              "fr": "Couleur"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "font",
+            "title": {
+              "en": "Font",
+              "fr": "Police"
+            },
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Font 0",
+                  "fr": "Police 0"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Font 1",
+                  "fr": "Police 1"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Font 2 (default)",
+                  "fr": "Police 2 (défaut)"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Font 3",
+                  "fr": "Police 3"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Font 4",
+                  "fr": "Police 4"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Font 5",
+                  "fr": "Police 5"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Font 6",
+                  "fr": "Police 6"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Font 7",
+                  "fr": "Police 7"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "draw_text_at",
+        "title": {
+          "en": "Draw text at position",
+          "fr": "Écrire du texte à une position"
+        },
+        "titleFormatted": {
+          "en": "Draw [[text]] at [[x]],[[y]] in [[color]] (font [[font]], slot [[textId]])",
+          "fr": "Écrire [[text]] à [[x]],[[y]] en [[color]] (police [[font]], slot [[textId]])"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "text",
+            "name": "text",
+            "title": {
+              "en": "Text",
+              "fr": "Texte"
+            }
+          },
+          {
+            "type": "number",
+            "name": "x",
+            "title": {
+              "en": "X (column)",
+              "fr": "X (colonne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "number",
+            "name": "y",
+            "title": {
+              "en": "Y (row)",
+              "fr": "Y (ligne)"
+            },
+            "min": 0,
+            "max": 63,
+            "step": 1
+          },
+          {
+            "type": "color",
+            "name": "color",
+            "title": {
+              "en": "Color",
+              "fr": "Couleur"
+            }
+          },
+          {
+            "type": "dropdown",
+            "name": "font",
+            "title": {
+              "en": "Font",
+              "fr": "Police"
+            },
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Font 0",
+                  "fr": "Police 0"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Font 1",
+                  "fr": "Police 1"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Font 2 (default)",
+                  "fr": "Police 2 (défaut)"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Font 3",
+                  "fr": "Police 3"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Font 4",
+                  "fr": "Police 4"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Font 5",
+                  "fr": "Police 5"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Font 6",
+                  "fr": "Police 6"
+                }
+              },
+              {
+                "id": "7",
+                "label": {
+                  "en": "Font 7",
+                  "fr": "Police 7"
+                }
+              }
+            ]
+          },
+          {
+            "type": "number",
+            "name": "textId",
+            "title": {
+              "en": "Text slot (2–20)",
+              "fr": "Slot texte (2–20)"
+            },
+            "min": 2,
+            "max": 20,
+            "step": 1,
+            "value": 2
+          }
+        ]
+      },
+      {
+        "id": "clean_display",
+        "title": {
+          "en": "Clear screen",
+          "fr": "Effacer l'écran"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          }
+        ]
+      },
+      {
+        "id": "clear_text_overlays",
+        "title": {
+          "en": "Clear all text overlays",
+          "fr": "Effacer tous les textes"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          }
+        ]
+      },
+      {
+        "id": "take_screenshot",
+        "title": {
+          "en": "Save screenshot",
+          "fr": "Enregistrer une capture"
+        },
+        "titleFormatted": {
+          "en": "Save screenshot to slot [[slot]]",
+          "fr": "Enregistrer capture dans le slot [[slot]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "dropdown",
+            "name": "slot",
+            "title": {
+              "en": "Slot",
+              "fr": "Slot"
+            },
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Slot 1",
+                  "fr": "Slot 1"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Slot 2",
+                  "fr": "Slot 2"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Slot 3",
+                  "fr": "Slot 3"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Slot 4",
+                  "fr": "Slot 4"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Slot 5",
+                  "fr": "Slot 5"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "display_screenshot",
+        "title": {
+          "en": "Restore screenshot",
+          "fr": "Restaurer une capture"
+        },
+        "titleFormatted": {
+          "en": "Restore screenshot from slot [[slot]]",
+          "fr": "Restaurer capture depuis le slot [[slot]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=pixoo64"
+          },
+          {
+            "type": "dropdown",
+            "name": "slot",
+            "title": {
+              "en": "Slot",
+              "fr": "Slot"
+            },
+            "values": [
+              {
+                "id": "1",
+                "label": {
+                  "en": "Slot 1",
+                  "fr": "Slot 1"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Slot 2",
+                  "fr": "Slot 2"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Slot 3",
+                  "fr": "Slot 3"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Slot 4",
+                  "fr": "Slot 4"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Slot 5",
+                  "fr": "Slot 5"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "Pixoo64"
+      },
+      "class": "tv",
+      "capabilities": [
+        "onoff",
+        "dim",
+        "pixoo_channel",
+        "pixoo_channel_clock",
+        "pixoo_channel_cloud",
+        "pixoo_channel_visualizer",
+        "pixoo_channel_custom",
+        "pixoo_channel_black"
+      ],
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "images": {
+        "small": "/drivers/pixoo64/assets/images/small.png",
+        "large": "/drivers/pixoo64/assets/images/large.png",
+        "xlarge": "/drivers/pixoo64/assets/images/xlarge.png"
+      },
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "ip_input"
+        }
+      ],
+      "settings": [
+        {
+          "id": "ip",
+          "type": "text",
+          "label": {
+            "en": "IP Address",
+            "fr": "Adresse IP"
+          },
+          "value": "",
+          "hint": {
+            "en": "The local IP address of your Pixoo64 (e.g. 192.168.1.42)",
+            "fr": "L'adresse IP locale de votre Pixoo64 (ex: 192.168.1.42)"
+          }
+        },
+        {
+          "id": "api_revision",
+          "type": "text",
+          "label": {
+            "en": "API Revision",
+            "fr": "Révision API"
+          },
+          "value": "",
+          "hint": {
+            "en": "Detected automatically by the app: Legacy revision or New revision.",
+            "fr": "Détecté automatiquement par l'app : Legacy revision ou New revision."
+          }
+        },
+        {
+          "id": "api_endpoint",
+          "type": "text",
+          "label": {
+            "en": "API Endpoint",
+            "fr": "Endpoint API"
+          },
+          "value": "",
+          "hint": {
+            "en": "Detected automatically by the app. Do not edit this value manually.",
+            "fr": "Détecté automatiquement par l'app. Ne modifiez pas cette valeur manuellement."
+          }
+        }
+      ],
+      "id": "pixoo64"
+    }
+  ]
+}

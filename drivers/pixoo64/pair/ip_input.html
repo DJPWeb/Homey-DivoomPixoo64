@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Pixoo64</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: transparent;
+      color: #1a1a1a;
+      padding: 24px;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .header img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .header p {
+      font-size: 13px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 15px;
+      border: 1.5px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.15s;
+      background: #fff;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007aff;
+    }
+
+    input[type="text"].error {
+      border-color: #ff3b30;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #888;
+      margin-top: 5px;
+    }
+
+    .error-msg {
+      font-size: 12px;
+      color: #ff3b30;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .error-msg.visible {
+      display: block;
+    }
+
+    .status-msg {
+      font-size: 12px;
+      color: #148a2c;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .status-msg.visible {
+      display: block;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #007aff;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    button:hover:not(:disabled) {
+      background: #0062cc;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .tip {
+      margin-top: 20px;
+      padding: 12px 14px;
+      background: #f0f7ff;
+      border-radius: 10px;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .tip strong {
+      color: #007aff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div>
+      <h1>Add Pixoo64</h1>
+      <p>Enter the local IP address or API URL of your device</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ip">IP Address or API URL</label>
+    <input
+      type="text"
+      id="ip"
+      placeholder="192.168.1.42 or http://192.168.1.42:9000/divoom_api"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+    />
+    <div class="hint">Find the IP in the Divoom app under Device → IP Address</div>
+    <div class="error-msg" id="error-msg"><!-- filled dynamically --></div>
+    <div class="status-msg" id="status-msg"><!-- filled dynamically --></div>
+  </div>
+
+  <button id="btn-connect" type="button">Connect</button>
+
+  <div class="tip">
+    <strong>Tip:</strong> Make sure your Pixoo64 and Homey are on the same Wi-Fi network.
+    Assign a static IP (or DHCP reservation) to avoid re-pairing after network changes.
+  </div>
+
+  <script>
+    const ipInput   = document.getElementById('ip');
+    const btn       = document.getElementById('btn-connect');
+    const errorMsg  = document.getElementById('error-msg');
+    const statusMsg = document.getElementById('status-msg');
+
+    function showError(msg) {
+      errorMsg.textContent = msg;
+      errorMsg.classList.add('visible');
+      ipInput.classList.add('error');
+    }
+
+    function clearError() {
+      errorMsg.classList.remove('visible');
+      ipInput.classList.remove('error');
+      statusMsg.classList.remove('visible');
+    }
+
+    function showStatus(msg) {
+      statusMsg.textContent = msg;
+      statusMsg.classList.add('visible');
+    }
+
+    function setLoading(loading) {
+      btn.disabled = loading;
+      btn.innerHTML = loading
+        ? '<span class="spinner"></span>Connecting…'
+        : 'Connect';
+    }
+
+    ipInput.addEventListener('input', clearError);
+
+    // Allow pressing Enter to submit
+    ipInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') btn.click();
+    });
+
+    btn.addEventListener('click', async () => {
+      clearError();
+      const ip = ipInput.value.trim();
+
+      if (!ip) {
+        showError('Please enter an IP address.');
+        ipInput.focus();
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        // Step 1 — validate IP and ping the device
+        const result = await Homey.emit('validate_ip', ip);
+        if (result && result.message) {
+          showStatus(result.message);
+          await new Promise((resolve) => setTimeout(resolve, 700));
+        }
+
+        // Step 2 — retrieve the prepared device object from the driver
+        const device = await Homey.emit('get_device');
+
+        // Step 3 — register the device with Homey and close the pairing dialog
+        await Homey.createDevice(device);
+        await Homey.done();
+      } catch (err) {
+        showError(err.message || 'Could not connect. Check the IP and try again.');
+        setLoading(false);
+        ipInput.focus();
+      }
+    });
+
+    // Signal to Homey that the view is ready
+    Homey.ready();
+  </script>
+
+</body>
+</html>

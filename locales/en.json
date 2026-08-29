@@ -1,0 +1,52 @@
+{
+  "pairing": {
+    "invalid_ip": "Invalid IP address format. Please use e.g. 192.168.1.42",
+    "unreachable": "Could not reach the Pixoo64 at {{ip}}. Check the IP address and make sure the device is on.",
+    "not_validated": "No device was validated. Please go back and enter the IP address."
+  },
+  "device": {
+    "unreachable": "Device is offline or unreachable",
+    "command_failed": "Command failed — check that the device is on and reachable"
+  },
+  "flow": {
+    "display_image": {
+      "image_fetch_failed": "Could not fetch the image from the URL — check that it is reachable and returns a PNG, GIF or JPEG",
+      "image_decode_failed": "Could not decode the image — only PNG, GIF and JPEG files are supported",
+      "send_failed": "Image sent but the device returned an error"
+    },
+    "display_text": {
+      "send_failed": "Text sent but the device returned an error"
+    },
+    "set_channel": {
+      "failed": "Could not switch channel — check that the device is on and reachable"
+    },
+    "play_buzzer": {
+      "failed": "Could not activate the buzzer — check that the device is on and reachable"
+    },
+    "sync_time": {
+      "failed": "Could not synchronise the clock — check that the device is on and reachable"
+    },
+    "show_scoreboard": {
+      "failed": "Could not show scoreboard — check that the device is on and reachable"
+    },
+    "start_timer": {
+      "failed": "Could not start timer — check that the device is on and reachable"
+    },
+    "stop_timer": {
+      "failed": "Could not stop timer — check that the device is on and reachable"
+    },
+    "fill_screen": {
+      "failed": "Could not fill screen — check that the device is on and reachable"
+    },
+    "draw_rect": {
+      "failed": "Could not draw rectangle — check that the device is on and reachable"
+    },
+    "draw_text_at": {
+      "failed": "Could not draw text — check that the device is on and reachable"
+    },
+    "draw_image_at": {
+      "image_fetch_failed": "Could not fetch the image from the URL — check that it is reachable and returns a PNG, GIF or JPEG",
+      "send_failed": "Could not draw image — check that the device is on and reachable"
+    }
+  }
+}

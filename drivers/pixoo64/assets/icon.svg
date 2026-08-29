@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="960" height="960" viewBox="0 0 960 960" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 64x64 cells. Each cell = 10x10. Pixel = 8x8 centered => 1px gap all around -->
+    <pattern id="pixoo64-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="none"/>
+      <rect x="1" y="1" width="8" height="8" fill="#000000" shape-rendering="crispEdges"/>
+    </pattern>
+
+    <clipPath id="grid-clip">
+      <rect x="160" y="160" width="640" height="640" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <!-- Apply a transformation similar to the reference SVG -->
+  <g transform="rotate(6 480 480) translate(86 85) scale(0.82 1) skewY(-5)">
+    <rect x="130" y="130" width="700" height="700" rx="16" fill="none" stroke="#000000" stroke-width="40"/>
+
+    <g clip-path="url(#grid-clip)">
+      <rect x="160" y="160" width="640" height="640" fill="url(#pixoo64-grid)" shape-rendering="crispEdges"/>
+    </g>
+  </g>
+</svg>

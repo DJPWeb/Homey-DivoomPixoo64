@@ -1,0 +1,76 @@
+{
+  "name": {
+    "en": "Pixoo64"
+  },
+  "class": "tv",
+  "capabilities": [
+    "onoff",
+    "dim",
+    "pixoo_channel",
+    "pixoo_channel_clock",
+    "pixoo_channel_cloud",
+    "pixoo_channel_visualizer",
+    "pixoo_channel_custom",
+    "pixoo_channel_black"
+  ],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
+  "images": {
+    "small": "/drivers/pixoo64/assets/images/small.png",
+    "large": "/drivers/pixoo64/assets/images/large.png",
+    "xlarge": "/drivers/pixoo64/assets/images/xlarge.png"
+  },
+  "pair": [
+    {
+      "id": "start"
+    },
+    {
+      "id": "ip_input"
+    }
+  ],
+  "settings": [
+    {
+      "id": "ip",
+      "type": "text",
+      "label": {
+        "en": "IP Address",
+        "fr": "Adresse IP"
+      },
+      "value": "",
+      "hint": {
+        "en": "The local IP address of your Pixoo64 (e.g. 192.168.1.42)",
+        "fr": "L'adresse IP locale de votre Pixoo64 (ex: 192.168.1.42)"
+      }
+    },
+    {
+      "id": "api_revision",
+      "type": "text",
+      "label": {
+        "en": "API Revision",
+        "fr": "Révision API"
+      },
+      "value": "",
+      "hint": {
+        "en": "Detected automatically by the app: Legacy revision or New revision.",
+        "fr": "Détecté automatiquement par l'app : Legacy revision ou New revision."
+      }
+    },
+    {
+      "id": "api_endpoint",
+      "type": "text",
+      "label": {
+        "en": "API Endpoint",
+        "fr": "Endpoint API"
+      },
+      "value": "",
+      "hint": {
+        "en": "Detected automatically by the app. Do not edit this value manually.",
+        "fr": "Détecté automatiquement par l'app. Ne modifiez pas cette valeur manuellement."
+      }
+    }
+  ]
+}
